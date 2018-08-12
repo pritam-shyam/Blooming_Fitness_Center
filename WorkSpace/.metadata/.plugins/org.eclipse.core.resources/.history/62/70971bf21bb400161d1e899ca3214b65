@@ -1,0 +1,113 @@
+package oracle1;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+public class MemScreen extends JPanel 
+{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4522386710678340144L;
+	private MemControl control = new MemControl();
+	
+	private JTextField idField = new JTextField();
+	private JTextField fnameField = new JTextField();
+	private JTextField lnameField = new JTextField();
+	private JTextField streetField = new JTextField();
+	private JTextField zipField = new JTextField();
+	private JTextField homeField = new JTextField();
+	private JTextField cellField = new JTextField();
+	private JTextField genField = new JTextField();
+	private JTextField ageField = new JTextField();
+	private JTextField birthField = new JTextField();
+	private JTextField joinField = new JTextField();
+	private JTextField feeField = new JTextField();
+	private JTextField typeField = new JTextField();
+	
+	private JButton createButton = new JButton("Add");
+	private JButton createButton1 = new JButton("Delete");
+	private JButton createButton2 = new JButton("Update");
+	private JButton createButton3 = new JButton("Next");
+	private JButton createButton4 = new JButton("Before");
+	private JButton createButton5 = new JButton("First");
+	private JButton createButton6 = new JButton("Last");
+
+	private JTextField textField;
+	private JTextField textField_1;
+	/**
+	 * Create the panel.
+	 */
+	public MemScreen() 
+	{ 
+		setBorder(new TitledBorder (new EtchedBorder(),"Person Details"));
+		setLayout(new BorderLayout(5, 5));
+		add(iFields(), BorderLayout.NORTH);
+		add(iButtons(), BorderLayout.CENTER);
+		setFieldData(control.moveFirst());
+		
+	}
+	
+	private JPanel iButtons()
+	{
+		
+	}
+	
+	private JPanel iFields()
+	{
+		
+	}
+	
+
+	private Members getFieldData()
+	{
+		Members m = new Members();
+		m.setID(idField.getText());
+		/*m.setfname(fnameField.getText());
+		m.setlname(lnameField.getText());
+		m.setstreet(streetField.getText());
+		m.setzip(zipField.getText());
+		m.sethome(homeField.getText());
+		m.setcell(cellField.getText());
+		m.setgen(genField.getText());
+		m.setage(ageField.getText());
+		m.setbirth(birthField.getText());
+		m.setjoin(joinField.getText());
+		m.setfee(feeField.getText());
+		m.settype(typeField.getText());*/
+		return m;	
+	}
+	
+	private void setFieldData(Members m)
+	{
+		idField.setText(m.getmID());
+		/*fnameField.setText(m.getfname());
+		lnameField.setText(m.getlname());
+		streetField.setText(m.getstreet());
+		zipField.setText(m.getstreet());
+		homeField.setText(m.gethome());
+		cellField.setText(m.getcell());
+		genField.setText(m.getgen());
+		ageField.setText(m.getage());
+		birthField.setText(m.getbirth());
+		joinField.setText(m.getjoin());
+		feeField.setText(m.getfee());
+		typeField.setText(m.gettype());*/
+	}
+}

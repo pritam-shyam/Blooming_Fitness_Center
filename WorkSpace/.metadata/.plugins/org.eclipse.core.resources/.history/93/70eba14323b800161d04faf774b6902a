@@ -1,0 +1,121 @@
+package oracle1;
+
+import javax.swing.JPanel;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+import net.miginfocom.swing.MigLayout;
+
+public class EmpScreen extends JPanel 
+{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4522386710678340144L;
+	
+	private JTextField idField = new JTextField(6);
+	private JTextField fnameField = new JTextField(9);
+	private JTextField lnameField = new JTextField(9);
+	private JTextField streetField = new JTextField(9);
+	private JTextField zipField = new JTextField(6);
+	private JTextField stateField = new JTextField(2);
+	private JTextField homeField = new JTextField(9);
+	private JTextField cellField = new JTextField(9);
+	private JTextField genField = new JTextField(8);
+	private JTextField ageField = new JTextField(2);
+	private JTextField birthField = new JTextField(8);
+	private JTextField joinField = new JTextField(8);
+	private JTextField feeField = new JTextField(3);
+	private JTextField typeField = new JTextField(5);
+	
+	private JButton createButton = new JButton("New");
+	private JButton createButton1 = new JButton("Delete");
+	private JButton createButton3 = new JButton("Next");
+	private JButton createButton4 = new JButton("Previous");
+	private JButton createButton5 = new JButton("Main Menu");
+
+	
+	
+
+	/**
+	 * Create the panel.
+	 */
+	public EmpScreen() 
+	{ 
+		setBorder(new TitledBorder (new EtchedBorder(),"Employee Info"));
+		setLayout(new BorderLayout(10, 10));
+		add(iFields(), BorderLayout.PAGE_START);
+		add(iButtons(), BorderLayout.AFTER_LAST_LINE);	
+	}
+	
+	private JPanel iButtons()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel.add(createButton);
+		panel.add(createButton1);
+		panel.add(createButton3);
+		panel.add(createButton4);
+		panel.add(createButton5);
+		return panel;	
+	}
+	
+	private JPanel iFields() 
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new MigLayout());
+		panel.add(new JLabel("Employee ID"), "left align label");
+		panel.add(idField, "wrap");
+		panel.add(new JLabel("First Name"), "left align label");
+		panel.add(fnameField);
+		panel.add(new JLabel("Last Name"), "left align label");
+		panel.add(lnameField,"wrap");
+		panel.add(new JLabel("Street"), "left align label");
+		panel.add(streetField);
+		panel.add(new JLabel("Zip"), "left align label");
+		panel.add(zipField);
+		panel.add(new JLabel("State"), "left align label");
+		panel.add(stateField, "wrap");
+		panel.add(new JLabel("Home Phone"), "left align label");
+		panel.add(homeField);
+		panel.add(new JLabel("Cell Phone"), "left align label");
+		panel.add(cellField, "wrap");
+		panel.add(new JLabel("Hired Date"), "left align label");
+		panel.add(genField);
+		panel.add(new JLabel("Status"), "left align label");
+		panel.add(ageField, "wrap");
+		panel.add(new JLabel("Position"), "left align label");
+		panel.add(birthField);
+		/*panel.add(new JLabel("Join Date"), "left align label");
+		panel.add(joinField,"wrap");
+		panel.add(new JLabel("Member Type"), "left align label");
+		panel.add(typeField);
+		panel.add(new JLabel("Member Fee"), "left align label");
+		panel.add(feeField);*/
+		idField.setEnabled(false);
+		fnameField.setEnabled(false);
+		lnameField.setEnabled(false);
+		streetField.setEnabled(false);
+		zipField.setEnabled(false);
+		stateField.setEnabled(false);
+		homeField.setEnabled(false);
+		cellField.setEnabled(false);
+		genField.setEnabled(false);
+		ageField.setEnabled(false);
+		birthField.setEnabled(false);
+		joinField.setEnabled(false);
+		typeField.setEnabled(false);
+		feeField.setEnabled(false);
+		return panel;
+	}
+	
+}
+

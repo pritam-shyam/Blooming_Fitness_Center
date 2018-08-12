@@ -1,0 +1,40 @@
+package oracle1;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.CardLayout;
+import java.awt.Container;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import oracle1.LoginScreen;
+
+public class MainScreen extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5190603535250793547L;
+
+	/**
+	 * Create the panel.
+	 */
+	public MainScreen() {
+		setLayout(new CardLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		add(panel, "name_1598002443185");
+		panel.setLayout(null);
+		
+		JButton btnMembers = new JButton("Members");
+		btnMembers.setBounds(52, 96, 117, 29);
+		panel.add(btnMembers);
+		
+		JLabel lblMainMenu = new JLabel("Main Menu");
+		lblMainMenu.setBounds(175, 49, 101, 16);
+		panel.add(lblMainMenu);
+
+	}
+}

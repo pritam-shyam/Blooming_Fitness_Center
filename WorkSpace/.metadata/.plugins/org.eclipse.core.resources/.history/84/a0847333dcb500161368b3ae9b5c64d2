@@ -1,0 +1,222 @@
+package oracle1;
+
+import java.sql.SQLException;
+
+import javax.sql.rowset.JdbcRowSet;
+import javax.swing.JOptionPane;
+
+import com.sun.rowset.JdbcRowSetImpl;
+
+public class MemControl 
+{
+	private static String DRIVER = "oracle.jdbc.OracleDriver";
+	private static String SERVER = "jdbc:oracle:thin:@busoracle.bus.iastate.edu:1521:orcl";
+	private static String USER = "mis320IY9";
+	private static String PASS = "zipgig";
+	private JdbcRowSet rowSet = null;
+	
+	public MemControl()
+	{
+		try
+		{
+			Class.forName(DRIVER);
+			rowSet = new JdbcRowSetImpl();
+			rowSet.setUrl(SERVER);
+			rowSet.setUsername(USER);
+			rowSet.setPassword(PASS);
+			rowSet.setCommand("SELECT memID, memFname, memLname, memStreet, memZip, memState, memHome, memCell, memGen, memAge, memBirth, memJoin, memFee, memType FROM Mem_List");
+			rowSet.execute();
+			JOptionPane.showMessageDialog(null, "iSQL Connected");
+		} catch (SQLException | ClassNotFoundException e1)
+		{
+			JOptionPane.showMessageDialog(null, "ISU Network Only");
+			e1.printStackTrace();
+		}
+	}
+	public Members create(Members m)
+	{
+		try
+		{
+			rowSet.moveToInsertRow();
+			rowSet.updateString("memID", m.getmID());
+			rowSet.updateString("memFname", m.getfname());
+			rowSet.updateString("memLname", m.getlname());
+			rowSet.updateString("memStreet", m.getstreet());
+			rowSet.updateString("memZip", m.getzip());
+			rowSet.updateString("memState", m.getstate());
+			rowSet.updateString("memHome", m.gethome());
+			rowSet.updateString("memCell", m.getcell());
+			rowSet.updateString("memGen", m.getgen());
+			rowSet.updateString("memAge", m.getage());
+			rowSet.updateString("memBirth", m.getbirth());
+			rowSet.updateString("memJoin", m.getjoin());
+			rowSet.updateString("memFee", m.getfee());
+			rowSet.updateString("memType", m.gettype());
+			rowSet.updateRow();
+			rowSet.moveToCurrentRow();		
+		} catch (SQLException e2)
+		{
+			e2.printStackTrace();
+		}
+		return m;	
+	}
+	
+	public void delete()
+	{
+		try
+		{
+			rowSet.moveToCurrentRow();
+			rowSet.deleteRow();
+		} catch (SQLException e3)
+		{
+			try
+			{
+				rowSet.rollback();
+			} catch (SQLException e4) {}
+			e3.printStackTrace();
+		}
+	}
+	
+	public Members moveFirst()
+	{
+		Members m = new Members();
+		try
+		{
+			rowSet.first();
+			m.setID(rowSet.getString("memID"));
+			m.setfname(rowSet.getString("memFname"));
+			m.setlname(rowSet.getString("memLname"));
+			m.setstreet(rowSet.getString("memStreet"));
+			m.setzip(rowSet.getString("memZip"));
+			m.setstate(rowSet.getString("memState"));
+			m.sethome(rowSet.getString("memHome"));
+			m.setcell(rowSet.getString("memCell"));
+			m.setgen(rowSet.getString("memGen"));
+			m.setage(rowSet.getString("memAge"));
+			m.setbirth(rowSet.getString("memBirth"));
+			m.setjoin(rowSet.getString("memJoin"));
+			m.setfee(rowSet.getString("memFee"));
+			m.settype(rowSet.getString("memType"));
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();
+		}
+		return m;
+	}
+	
+	/*public Members moveLast()
+	{
+		Members m = new Members();
+		try
+		{
+			rowSet.last();
+			m.setID(rowSet.getString("memID"));
+			m.setfname(rowSet.getString("memFname"));
+			m.setlname(rowSet.getString("memLname"));
+			m.setstreet(rowSet.getString("memStreet"));
+			m.setzip(rowSet.getString("memZip"));
+			m.setstate(rowSet.getString("memState"));
+			m.sethome(rowSet.getString("memHome"));
+			m.setcell(rowSet.getString("memCell"));
+			m.setgen(rowSet.getString("memGen"));
+			m.setage(rowSet.getString("memAge"));
+			m.setbirth(rowSet.getString("memBirth"));
+			m.setjoin(rowSet.getString("memJoin"));
+			m.setfee(rowSet.getString("memFee"));
+			m.settype(rowSet.getString("memType"));
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();
+		}
+		return m;
+	}
+	
+	public Members moveNext()
+	{
+		Members m = new Members();
+		try
+		{
+			if(rowSet.next() == false)
+				rowSet.previous();
+			m.setID(rowSet.getString("memID"));
+			m.setfname(rowSet.getString("memFname"));
+			m.setlname(rowSet.getString("memLname"));
+			m.setstreet(rowSet.getString("memStreet"));
+			m.setzip(rowSet.getString("memZip"));
+			m.setstate(rowSet.getString("memState"));
+			m.sethome(rowSet.getString("memHome"));
+			m.setcell(rowSet.getString("memCell"));
+			m.setgen(rowSet.getString("memGen"));
+			m.setage(rowSet.getString("memAge"));
+			m.setbirth(rowSet.getString("memBirth"));
+			m.setjoin(rowSet.getString("memJoin"));
+			m.setfee(rowSet.getString("memFee"));
+			m.settype(rowSet.getString("memType"));
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();
+		}
+		return m;
+	}*/
+	
+	public Members movePrevious()
+	{
+		Members m = new Members();
+		try
+		{
+			if(rowSet.previous() == false)
+				rowSet.next();
+			m.setID(rowSet.getString("memID"));
+			m.setfname(rowSet.getString("memFname"));
+			m.setlname(rowSet.getString("memLname"));
+			m.setstreet(rowSet.getString("memStreet"));
+			m.setzip(rowSet.getString("memZip"));
+			m.setstate(rowSet.getString("memState"));
+			m.sethome(rowSet.getString("memHome"));
+			m.setcell(rowSet.getString("memCell"));
+			m.setgen(rowSet.getString("memGen"));
+			m.setage(rowSet.getString("memAge"));
+			m.setbirth(rowSet.getString("memBirth"));
+			m.setjoin(rowSet.getString("memJoin"));
+			m.setfee(rowSet.getString("memFee"));
+			m.settype(rowSet.getString("memType"));
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();
+		}
+		return m;
+	}
+	
+	public Members getCurrent()
+	{
+		Members m = new Members();
+		try
+		{
+			rowSet.moveToCurrentRow();
+			m.setID(rowSet.getString("memID"));
+			m.setfname(rowSet.getString("memFname"));
+			m.setlname(rowSet.getString("memLname"));
+			m.setstreet(rowSet.getString("memStreet"));
+			m.setzip(rowSet.getString("memZip"));
+			m.setstate(rowSet.getString("memState"));
+			m.sethome(rowSet.getString("memHome"));
+			m.setcell(rowSet.getString("memCell"));
+			m.setgen(rowSet.getString("memGen"));
+			m.setage(rowSet.getString("memAge"));
+			m.setbirth(rowSet.getString("memBirth"));
+			m.setjoin(rowSet.getString("memJoin"));
+			m.setfee(rowSet.getString("memFee"));
+			m.settype(rowSet.getString("memType"));
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();
+		}
+		return m;
+	}
+}
+
+
+
+
+
+

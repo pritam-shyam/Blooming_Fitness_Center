@@ -1,0 +1,68 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+
+public class Screen2 extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Screen1 frame = new Screen1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Screen2() {
+		setTitle("Project ZEBRA");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 480, 420);
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Order Information");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		lblNewLabel.setBounds(6, 18, 239, 36);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblOrderNumber = new JLabel("Order Number");
+		lblOrderNumber.setBounds(26, 66, 98, 16);
+		contentPane.add(lblOrderNumber);
+		
+		JLabel lblOrderDate = new JLabel("Order Date");
+		lblOrderDate.setBounds(26, 94, 76, 16);
+		contentPane.add(lblOrderDate);
+		
+		JLabel lblOrderStatus = new JLabel("Order Status");
+		lblOrderStatus.setBounds(26, 122, 98, 16);
+		contentPane.add(lblOrderStatus);
+		
+		JLabel lblEmployeeId = new JLabel("Employee ID");
+		lblEmployeeId.setBounds(270, 66, 87, 16);
+		contentPane.add(lblEmployeeId);
+	}
+}

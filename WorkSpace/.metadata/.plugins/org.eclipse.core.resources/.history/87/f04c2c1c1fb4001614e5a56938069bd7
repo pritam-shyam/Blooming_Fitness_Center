@@ -1,0 +1,152 @@
+package oracle1;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+import net.miginfocom.swing.MigLayout;
+
+public class MemScreen extends JPanel 
+{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4522386710678340144L;
+	private MemControl control = new MemControl();
+	
+	private JTextField idField = new JTextField();
+	private JTextField fnameField = new JTextField();
+	private JTextField lnameField = new JTextField();
+	private JTextField streetField = new JTextField();
+	private JTextField zipField = new JTextField();
+	private JTextField homeField = new JTextField();
+	private JTextField cellField = new JTextField();
+	private JTextField genField = new JTextField();
+	private JTextField ageField = new JTextField();
+	private JTextField birthField = new JTextField();
+	private JTextField joinField = new JTextField();
+	private JTextField feeField = new JTextField();
+	private JTextField typeField = new JTextField();
+	
+	private JButton createButton = new JButton("Add");
+	private JButton createButton1 = new JButton("Delete");
+	private JButton createButton2 = new JButton("Update");
+	private JButton createButton3 = new JButton("Next");
+	private JButton createButton4 = new JButton("Previous");
+	//private JButton createButton5 = new JButton("First");
+	//private JButton createButton6 = new JButton("Last");
+
+	/**
+	 * Create the panel.
+	 */
+	public MemScreen() 
+	{ 
+		setBorder(new TitledBorder (new EtchedBorder(),"Member Info"));
+		setLayout(new BorderLayout(5, 5));
+		add(iFields(), BorderLayout.NORTH);
+		add(iButtons(), BorderLayout.CENTER);
+		setFieldData(control.moveFirst());	
+	}
+	
+	private JPanel iButtons()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 3));
+		panel.add(createButton);
+		createButton.addActionListener(new ButtonHandler());
+		panel.add(createButton1);
+		createButton1.addActionListener(new ButtonHandler());
+		panel.add(createButton2);
+		createButton2.addActionListener(new ButtonHandler());
+		panel.add(createButton3);
+		createButton3.addActionListener(new ButtonHandler());
+		panel.add(createButton4);
+		createButton4.addActionListener(new ButtonHandler());
+		panel.add(createButton5);
+		createButton5.addActionListener(new ButtonHandler());
+		panel.add(createButton6);
+		createButton6.addActionListener(new ButtonHandler());
+		return panel;	
+	}
+	
+	private JPanel iFields()
+	{
+		JPanel panel = new JPanel();
+		panel.setLayout(new MigLayout());
+		panel.add(new JLabel("Member ID"), "align label");
+		panel.add(idField, "wrap");
+		idField.setEnabled(false);
+		panel.add(new JLabel("First Name"), "align label");
+		panel.add(fnameField, "wrap");
+		return panel;
+	}
+	
+
+	private Members getFieldData()
+	{
+		Members m = new Members();
+		m.setID(idField.getText());
+		m.setfname(fnameField.getText());
+		m.setlname(lnameField.getText());
+		m.setstreet(streetField.getText());
+		m.setzip(zipField.getText());
+		m.sethome(homeField.getText());
+		m.setcell(cellField.getText());
+		m.setgen(genField.getText());
+		m.setage(ageField.getText());
+		m.setbirth(birthField.getText());
+		m.setjoin(joinField.getText());
+		m.setfee(feeField.getText());
+		m.settype(typeField.getText());
+		return m;	
+	}
+	
+	private void setFieldData(Members m)
+	{
+		idField.setText(m.getmID());
+		fnameField.setText(m.getfname());
+		lnameField.setText(m.getlname());
+		streetField.setText(m.getstreet());
+		zipField.setText(m.getstreet());
+		homeField.setText(m.gethome());
+		cellField.setText(m.getcell());
+		genField.setText(m.getgen());
+		ageField.setText(m.getage());
+		birthField.setText(m.getbirth());
+		joinField.setText(m.getjoin());
+		feeField.setText(m.getfee());
+		typeField.setText(m.gettype());
+	}
+	
+	private class ButtonHandler implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			Members m = getFieldData();
+			switch (e.getActionCommand())
+			{
+			
+			}
+		}
+		
+	}
+}

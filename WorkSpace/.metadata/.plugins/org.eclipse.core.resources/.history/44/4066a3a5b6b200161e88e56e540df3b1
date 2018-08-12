@@ -1,0 +1,45 @@
+package oracle1;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.sql.PooledConnection;
+
+import oracle.jdbc.pool.OracleConnectionPoolDataSource;
+
+public class ConnPool {
+  public static void main(String[] args) throws Exception {
+    OracleConnectionPoolDataSource ocpds = new OracleConnectionPoolDataSource();
+    ocpds.setURL("jdbc:oracle:thin:@localhost:1521:ORCL");
+    ocpds.setUser("user");
+    ocpds.setPassword("password");
+
+    PooledConnection pc_1 = ocpds.getPooledConnection();
+
+    Connection conn_1 = pc_1.getConnection();
+    Statement stmt = conn_1.createStatement();
+
+    ResultSet rs = stmt.executeQuery("SELECT count(*) FROM v$session WHERE username = 'SYS'");
+    rs.next();
+    String msg = "Total connections after ";
+    System.out.println(msg + "conn_1: " + rs.getString(1));
+
+    Connection conn_2 = pc_1.getConnection();
+    stmt = conn_2.createStatement();
+    rs = stmt.executeQuery("SELECT count(*) FROM v$session WHERE username = 'SYS'");
+    rs.next();
+    System.out.println(msg + "conn_2: " + rs.getString(1));
+
+    PooledConnection pc_2 = ocpds.getPooledConnection();
+    rs = stmt.executeQuery("SELECT count(*) FROM v$session WHERE username = 'SYS'");
+    rs.next();
+    System.out.println(msg + "pc_2: " + rs.getString(1));
+
+    conn_1.close();
+    conn_2.close();
+    pc_1.close();
+    pc_2.close();
+  }
+}
+
+ 

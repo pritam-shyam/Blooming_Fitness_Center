@@ -1,0 +1,33 @@
+package oracle1;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.sql.PooledConnection;
+
+import oracle.jdbc.pool.OracleConnectionPoolDataSource;
+
+public class ConnPool 
+{
+  public static void main(String[] args) throws Exception 
+  {
+    OracleConnectionPoolDataSource ocpds = new OracleConnectionPoolDataSource();
+    ocpds.setURL("jdbc:oracle:thin:@busoracle.bus.iastate.edu:1521:orcl");
+    ocpds.setUser("mis320IY9");
+    ocpds.setPassword("zipgig");
+
+    PooledConnection pc_1 = ocpds.getPooledConnection();
+
+    Connection conn_1 = pc_1.getConnection();
+    Statement stmt = conn_1.createStatement();
+
+    ResultSet rs = stmt.executeQuery("SELECT * FROM All_Tables");
+    rs.next();
+    System.out.print(rs);
+
+    conn_1.close();
+    pc_1.close();
+  }
+}
+
+ 

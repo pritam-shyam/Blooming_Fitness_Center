@@ -1,0 +1,65 @@
+package oracle1;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.CardLayout;
+
+public class MainScreen extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5190603535250793547L;
+
+	/**
+	 * Create the panel.
+	 */
+	public MainScreen() {
+		setLayout(new CardLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		add(panel, "name_1598002443185");
+		panel.setLayout(null);
+		
+		JButton btnMembers = new JButton("Members");
+		btnMembers.setBounds(72, 233, 117, 29);
+		panel.add(btnMembers);
+		
+		JLabel lblMainMenu = new JLabel("MAIN MENU");
+		lblMainMenu.setFont(new Font("Helvetica", Font.BOLD, 20));
+		lblMainMenu.setBounds(188, 30, 128, 29);
+		panel.add(lblMainMenu);
+		
+		JButton btnEmployees = new JButton("Employees");
+		btnEmployees.setEnabled(false);
+		btnEmployees.setBounds(72, 85, 117, 29);
+		panel.add(btnEmployees);
+		
+		JButton btnInstructors = new JButton("Instructors");
+		btnInstructors.setEnabled(false);
+		btnInstructors.setBounds(72, 162, 117, 29);
+		panel.add(btnInstructors);
+		
+		JButton btnNewButton = new JButton("Courses");
+		btnNewButton.setEnabled(false);
+		btnNewButton.setBounds(300, 85, 117, 29);
+		panel.add(btnNewButton);
+		
+		JButton btnVendors = new JButton("Vendors");
+		btnVendors.setEnabled(false);
+		btnVendors.setBounds(300, 162, 117, 29);
+		panel.add(btnVendors);
+		
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.setEnabled(false);
+		btnInventory.setBounds(300, 233, 117, 29);
+		panel.add(btnInventory);
+		
+		JLabel lblNewLabel = new JLabel("*Greyed out are unavailable, check back soon.");
+		lblNewLabel.setBounds(40, 274, 354, 16);
+		panel.add(lblNewLabel);
+
+	}
+}

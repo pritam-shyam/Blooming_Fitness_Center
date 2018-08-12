@@ -1,0 +1,97 @@
+package oracle1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.CardLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+
+public class MainScreen extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3611980285723567075L;
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
+					MainScreen frame = new MainScreen();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MainScreen() 
+	{
+		setResizable(false);
+		addWindowListener(new java.awt.event.WindowAdapter() 
+		{
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) 
+		    {
+		        if (JOptionPane.showConfirmDialog(null, 
+		            "Are you sure?", "Quit Program", 
+		            JOptionPane.YES_NO_OPTION,
+		            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
+		        {
+		            System.exit(0);
+		        }
+		    }
+		});
+		setTitle("Blooming Fitness Center");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 525, 335);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new CardLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, "name_1197633550224");
+		panel.setLayout(null);
+		
+		JLabel lblMainMe = new JLabel("Main Menu");
+		lblMainMe.setFont(new Font("Helvetica", Font.BOLD, 16));
+		lblMainMe.setBounds(226, 6, 129, 46);
+		panel.add(lblMainMe);
+		
+		JButton btnMembers = new JButton("Members");
+		btnMembers.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				MemScreen panel1 = new MemScreen();
+				getContentPane().removeAll();
+				getContentPane().add(panel1);
+				repaint();
+				printAll(getGraphics());
+			}
+		});
+		btnMembers.setBounds(49, 71, 117, 29);
+		panel.add(btnMembers);
+	}
+}

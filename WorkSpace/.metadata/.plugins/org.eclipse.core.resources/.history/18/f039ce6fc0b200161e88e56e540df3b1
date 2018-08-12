@@ -1,0 +1,61 @@
+package oracle1;
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.CardLayout;
+import java.awt.Container;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import oracle1.LoginScreen;
+
+public class MainScreen extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5190603535250793547L;
+
+	/**
+	 * Create the panel.
+	 */
+	public MainScreen() {
+		setLayout(new CardLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		add(panel, "name_1598002443185");
+		panel.setLayout(null);
+		
+		JButton btnMembers = new JButton("Members");
+		btnMembers.setBounds(58, 207, 117, 29);
+		panel.add(btnMembers);
+		
+		JLabel lblMainMenu = new JLabel("Main Menu");
+		lblMainMenu.setFont(new Font("Helvetica", Font.BOLD, 16));
+		lblMainMenu.setBounds(186, 34, 128, 16);
+		panel.add(lblMainMenu);
+		
+		JButton btnEmployees = new JButton("Employees");
+		btnEmployees.setBounds(58, 76, 117, 29);
+		panel.add(btnEmployees);
+		
+		JButton btnInstructors = new JButton("Instructors");
+		btnInstructors.setBounds(58, 143, 117, 29);
+		panel.add(btnInstructors);
+		
+		JButton btnNewButton = new JButton("Courses");
+		btnNewButton.setBounds(288, 76, 117, 29);
+		panel.add(btnNewButton);
+		
+		JButton btnVendors = new JButton("Vendors");
+		btnVendors.setBounds(288, 143, 117, 29);
+		panel.add(btnVendors);
+		
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.setBounds(288, 207, 117, 29);
+		panel.add(btnInventory);
+
+	}
+}

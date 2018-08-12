@@ -1,0 +1,130 @@
+package oracle1;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.CardLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+
+public class LoginScreen extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginScreen frame = new LoginScreen();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public LoginScreen() {
+		setTitle("Blooming Fitness Center");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new CardLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel, "name_1197633550224");
+		panel.setLayout(null);
+		
+		JButton btnLogin = new JButton("Connect");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			/*	try {
+					Class.forName("oracle.jdbc.OracleDriver");
+					String server = "jdbc:oracle:thin:@busoracle.bus.iastate.edu:1521:orcl";
+					String user = "mis320IY9";
+					String pass = "zipgig";
+					@SuppressWarnings("unused")
+					Connection conn = DriverManager.getConnection(server,user,pass);
+					JOptionPane.showMessageDialog(null, "Connection Successful");
+					return;
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Check internet connection");
+				}*/
+				MainScreen panel1 = new MainScreen();
+				getContentPane().removeAll();
+				getContentPane().add(panel1);
+				repaint();
+				printAll(getGraphics());
+			}
+		});
+		btnLogin.setBounds(78, 190, 117, 29);
+		panel.add(btnLogin);
+		
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuit.setBounds(242, 190, 117, 29);
+		panel.add(btnQuit);
+		
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(93, 84, 74, 16);
+		panel.add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setBounds(93, 124, 74, 16);
+		panel.add(lblPassword);
+		
+		JLabel lblLoginMenu = new JLabel("LOGIN MENU");
+		lblLoginMenu.setFont(new Font("Helvetica", Font.BOLD, 16));
+		lblLoginMenu.setBounds(169, 22, 107, 29);
+		panel.add(lblLoginMenu);
+		
+		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String txtfd1 = textField.getText();
+				String username = "pshyam";
+				if (txtfd1.equalsIgnoreCase(username))
+				{
+					JOptionPane.showMessageDialog(null, "Valid");
+				};
+			}
+		});
+		textField.setBounds(179, 79, 151, 26);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(179, 119, 151, 26);
+		panel.add(passwordField);
+	}
+}

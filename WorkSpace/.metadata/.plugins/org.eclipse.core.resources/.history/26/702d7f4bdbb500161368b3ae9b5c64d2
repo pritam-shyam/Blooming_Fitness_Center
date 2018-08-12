@@ -1,0 +1,55 @@
+package oracle1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
+public class OracleTester 
+{
+	private static String DRIVER = "oracle.jdbc.OracleDriver";
+	private static String SERVER = "jdbc:oracle:thin:@busoracle.bus.iastate.edu:1521:orcl";
+	private static String USER = "mis320IY9";
+	private static String PASS = "zipgig";
+	Connection conn = null;
+	static int mID = 0;
+	static String fname = null;
+
+	public static void main(String[] args) 
+	{
+		try
+		{
+			Class.forName(DRIVER);
+			Connection conn = DriverManager.getConnection(SERVER, USER, PASS);
+			System.out.println("iSQL Connected");
+			String tables = "SELECT Table_Name FROM All_Tables";
+			PreparedStatement ps = conn.prepareStatement(tables);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				 System.out.println(rs.getString(1));
+				 /*System.out.println(rs.getString(2));
+				 System.out.println(rs.getString(3));
+				 System.out.println(rs.getString(4));
+				 System.out.println(rs.getString(5));
+				 System.out.println(rs.getString(6));
+				 System.out.println(rs.getString(7));
+				 System.out.println(rs.getString(8));
+				 System.out.println(rs.getString(9));
+				 System.out.println(rs.getString(10));
+				 System.out.println(rs.getString(11));
+				 System.out.println(rs.getString(12));
+				 System.out.println(rs.getString(13));*/
+			}
+			String create = "";
+			PreparedStatement ps1 = conn.prepareStatement(create);
+			ResultSet rs1 = ps1.executeQuery();
+		} catch (Exception e)
+		{
+			System.out.println(e);
+		}
+
+	}
+
+}
